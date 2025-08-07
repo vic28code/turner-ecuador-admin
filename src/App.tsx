@@ -6,6 +6,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AdminLayout } from "./components/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import Sucursales from "./pages/Sucursales";
+import NuevaSucursal from "./pages/NuevaSucursal";
+import SucursalDetalles from "./pages/SucursalDetalles";
+import SucursalConfiguracion from "./pages/SucursalConfiguracion";
 import Kioskos from "./pages/Kioskos";
 import Publicidad from "./pages/Publicidad";
 import PlaceholderPage from "./pages/PlaceholderPage";
@@ -34,6 +37,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Dashboard />} />
           <Route path="/sucursales" element={<Sucursales />} />
+          <Route path="/sucursales/nueva" element={<NuevaSucursal />} />
+          <Route path="/sucursales/:id/detalles" element={<SucursalDetalles />} />
+          <Route path="/sucursales/:id/configurar" element={<SucursalConfiguracion />} />
           <Route path="/kioskos" element={<Kioskos />} />
           <Route path="/publicidad" element={<Publicidad />} />
             <Route path="/categorias" element={
