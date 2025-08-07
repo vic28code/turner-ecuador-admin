@@ -61,7 +61,21 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				admin: {
+					header: 'hsl(var(--admin-header))',
+					content: 'hsl(var(--admin-content))',
+					surface: 'hsl(var(--admin-surface))',
+					'border-light': 'hsl(var(--admin-border-light))',
+					'text-primary': 'hsl(var(--admin-text-primary))',
+					'text-secondary': 'hsl(var(--admin-text-secondary))',
+					'text-muted': 'hsl(var(--admin-text-muted))'
 				}
+			},
+			boxShadow: {
+				'admin-sm': 'var(--shadow-sm)',
+				'admin-md': 'var(--shadow-md)',
+				'admin-lg': 'var(--shadow-lg)'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
