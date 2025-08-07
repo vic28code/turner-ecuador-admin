@@ -7,6 +7,7 @@ import { AdminLayout } from "./components/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import Sucursales from "./pages/Sucursales";
 import Kioskos from "./pages/Kioskos";
+import Publicidad from "./pages/Publicidad";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 import { 
@@ -32,8 +33,9 @@ const App = () => (
         <AdminLayout>
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/sucursales" element={<Sucursales />} />
-            <Route path="/kioskos" element={<Kioskos />} />
+          <Route path="/sucursales" element={<Sucursales />} />
+          <Route path="/kioskos" element={<Kioskos />} />
+          <Route path="/publicidad" element={<Publicidad />} />
             <Route path="/categorias" element={
               <PlaceholderPage 
                 title="Categorías" 
@@ -46,13 +48,6 @@ const App = () => (
                 title="Pantallas" 
                 description="Control de pantallas y displays"
                 icon={<Tv className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/publicidad" element={
-              <PlaceholderPage 
-                title="Publicidad" 
-                description="Gestión de contenido publicitario"
-                icon={<Megaphone className="h-5 w-5" />}
               />
             } />
             <Route path="/usuarios" element={
