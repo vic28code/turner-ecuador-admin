@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, Monitor, Wifi, Battery } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const Kioskos = () => {
+  const navigate = useNavigate();
   const kioskos = [
     {
       id: "K-001",
@@ -73,7 +75,7 @@ const Kioskos = () => {
           <h1 className="text-2xl font-semibold text-admin-text-primary">Kioskos</h1>
           <p className="text-admin-text-secondary">Monitoreo y gestión de kioskos táctiles</p>
         </div>
-        <Button className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Button className="bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => navigate('/kioskos/registrar')}>
           <Plus className="h-4 w-4 mr-2" />
           Registrar Kiosko
         </Button>

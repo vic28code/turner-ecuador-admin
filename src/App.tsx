@@ -10,6 +10,7 @@ import NuevaSucursal from "./pages/NuevaSucursal";
 import SucursalDetalles from "./pages/SucursalDetalles";
 import SucursalConfiguracion from "./pages/SucursalConfiguracion";
 import Kioskos from "./pages/Kioskos";
+import RegistrarKiosko from "./pages/RegistrarKiosko";
 import Publicidad from "./pages/Publicidad";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
@@ -41,6 +42,7 @@ const App = () => (
           <Route path="/sucursales/:id/detalles" element={<SucursalDetalles />} />
           <Route path="/sucursales/:id/configurar" element={<SucursalConfiguracion />} />
           <Route path="/kioskos" element={<Kioskos />} />
+          <Route path="/kioskos/registrar" element={<RegistrarKiosko />} />
           <Route path="/publicidad" element={<Publicidad />} />
             <Route path="/categorias" element={
               <PlaceholderPage 
