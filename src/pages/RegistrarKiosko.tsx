@@ -5,34 +5,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, useSearchParams } from "react-router-dom";
 import { Save, ArrowLeft } from "lucide-react";
 
-interface SucursalOption {
-  id: number;
-  nombre: string;
-  kioskos: number;
-}
 
 const RegistrarKiosko = () => {
   const { toast } = useToast();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const initialSucursalNombre = (location.state as any)?.sucursalNombre || searchParams.get('sucursalNombre') || "";
+  const [sucursalAsignadaNombre] = useState(initialSucursalNombre || "Sin asignar");
 
   useEffect(() => {
     document.title = "Registrar Kiosko | Panel Admin";
   }, []);
 
-  // Mock de sucursales (coherente con la página Sucursales)
-  const sucursales: SucursalOption[] = [
-    { id: 1, nombre: "Sucursal Centro", kioskos: 3 },
-    { id: 2, nombre: "Sucursal Norte", kioskos: 2 },
-    { id: 3, nombre: "Sucursal Sur", kioskos: 4 },
-    { id: 4, nombre: "Sucursal Guayaquil Centro", kioskos: 5 },
-    { id: 5, nombre: "Sucursal Cuenca", kioskos: 0 },
-  ];
-
-  // Solo mostrar sucursales que ya tienen kioskos agregados (según pedido)
-  const sucursalesConKioskos = sucursales.filter((s) => s.kioskos > 0);
 
   const estados = ["activo", "inactivo", "mantenimiento"] as const;
 
@@ -48,7 +36,7 @@ const RegistrarKiosko = () => {
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.nombre.trim()) e.nombre = "El nombre es requerido";
-    if (!form.sucursalId) e.sucursalId = "Seleccione una sucursal";
+    
     if (!form.ubicacion.trim()) e.ubicacion = "La ubicación es requerida";
     if (!form.estado) e.estado = "Seleccione el estado";
     setErrors(e);
@@ -102,28 +90,18 @@ const RegistrarKiosko = () => {
                   {errors.nombre && <p className="text-sm text-red-500">{errors.nombre}</p>}
                 </div>
 
-                {/* Sucursal */}
+                {/* Sucursal asignada (no editable) */}
                 <div className="space-y-2">
-                  <Label className="text-admin-text-primary">Sucursal asignada</Label>
-                  <Select
-                    value={form.sucursalId}
-                    onValueChange={(val) => {
-                      setForm((f) => ({ ...f, sucursalId: val }));
-                      if (errors.sucursalId) setErrors((er) => ({ ...er, sucursalId: "" }));
-                    }}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Seleccione una sucursal" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {sucursalesConKioskos.map((s) => (
-                        <SelectItem key={s.id} value={String(s.id)}>
-                          {s.nombre}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                  {errors.sucursalId && <p className="text-sm text-red-500">{errors.sucursalId}</p>}
+                  <Label htmlFor="sucursalAsignada" className="text-admin-text-primary">Sucursal asignada</Label>
+                  <Input
+                    id="sucursalAsignada"
+                    value={sucursalAsignadaNombre || "Sin asignar"}
+                    disabled
+                    readOnly
+                    placeholder="Sin asignar"
+                    className="bg-admin-background border-admin-border-light"
+                  />
+                  <p className="text-xs text-admin-text-secondary">Este valor se define desde la página Sucursales.</p>
                 </div>
 
                 {/* Ubicación */}
