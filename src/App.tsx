@@ -16,8 +16,6 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 import { 
   FolderOpen, 
-  Tv, 
-  Megaphone, 
   Users, 
   Shield, 
   Clock, 
@@ -25,6 +23,8 @@ import {
   HelpCircle, 
   Settings 
 } from "lucide-react";
+import Pantallas from "./pages/Pantallas";
+import RegistrarPantalla from "./pages/RegistrarPantalla";
 
 const queryClient = new QueryClient();
 
@@ -51,13 +51,8 @@ const App = () => (
                 icon={<FolderOpen className="h-5 w-5" />}
               />
             } />
-            <Route path="/pantallas" element={
-              <PlaceholderPage 
-                title="Pantallas" 
-                description="Control de pantallas y displays"
-                icon={<Tv className="h-5 w-5" />}
-              />
-            } />
+            <Route path="/pantallas" element={<Pantallas />} />
+            <Route path="/pantallas/nueva" element={<RegistrarPantalla />} />
             <Route path="/usuarios" element={
               <PlaceholderPage 
                 title="Usuarios" 
