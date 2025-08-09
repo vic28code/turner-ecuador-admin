@@ -9,6 +9,10 @@ import Sucursales from "./pages/Sucursales";
 import NuevaSucursal from "./pages/NuevaSucursal";
 import SucursalDetalles from "./pages/SucursalDetalles";
 import SucursalConfiguracion from "./pages/SucursalConfiguracion";
+import Categorias from "./pages/Categorias";
+import NuevaCategoria from "./pages/NuevaCategoria";
+import CategoriaDetalles from "./pages/CategoriaDetalles";
+import CategoriaConfiguracion from "./pages/CategoriaConfiguracion";
 import Kioskos from "./pages/Kioskos";
 import RegistrarKiosko from "./pages/RegistrarKiosko";
 import Publicidad from "./pages/Publicidad";
@@ -16,15 +20,19 @@ import PlaceholderPage from "./pages/PlaceholderPage";
 import NotFound from "./pages/NotFound";
 import { 
   FolderOpen, 
-  Users, 
-  Shield, 
   Clock, 
-  BarChart3, 
-  HelpCircle, 
-  Settings 
+  BarChart3 
 } from "lucide-react";
 import Pantallas from "./pages/Pantallas";
 import RegistrarPantalla from "./pages/RegistrarPantalla";
+import Usuarios from "./pages/Usuarios";
+import Roles from "./pages/Roles";
+import Login from "./pages/Login";
+import Registro from "./pages/Registro";
+import Configuracion from "./pages/Configuracion";
+import Soporte from "./pages/Soporte";
+import Reportes from "./pages/Reportes";
+import Turnos from "./pages/Turnos";
 
 const queryClient = new QueryClient();
 
@@ -34,71 +42,36 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <AdminLayout>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-          <Route path="/sucursales" element={<Sucursales />} />
-          <Route path="/sucursales/nueva" element={<NuevaSucursal />} />
-          <Route path="/sucursales/:id/detalles" element={<SucursalDetalles />} />
-          <Route path="/sucursales/:id/configurar" element={<SucursalConfiguracion />} />
-          <Route path="/kioskos" element={<Kioskos />} />
-          <Route path="/kioskos/registrar" element={<RegistrarKiosko />} />
-          <Route path="/publicidad" element={<Publicidad />} />
-            <Route path="/categorias" element={
-              <PlaceholderPage 
-                title="Categorías" 
-                description="Gestión de categorías de servicios"
-                icon={<FolderOpen className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/pantallas" element={<Pantallas />} />
-            <Route path="/pantallas/nueva" element={<RegistrarPantalla />} />
-            <Route path="/usuarios" element={
-              <PlaceholderPage 
-                title="Usuarios" 
-                description="Administración de usuarios del sistema"
-                icon={<Users className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/roles" element={
-              <PlaceholderPage 
-                title="Roles" 
-                description="Gestión de roles y permisos"
-                icon={<Shield className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/turnos" element={
-              <PlaceholderPage 
-                title="Turnos" 
-                description="Sistema de gestión de turnos"
-                icon={<Clock className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/reportes" element={
-              <PlaceholderPage 
-                title="Reportes" 
-                description="Informes y estadísticas del sistema"
-                icon={<BarChart3 className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/soporte" element={
-              <PlaceholderPage 
-                title="Soporte" 
-                description="Centro de ayuda y soporte técnico"
-                icon={<HelpCircle className="h-5 w-5" />}
-              />
-            } />
-            <Route path="/configuracion" element={
-              <PlaceholderPage 
-                title="Configuración" 
-                description="Configuración general del sistema"
-                icon={<Settings className="h-5 w-5" />}
-              />
-            } />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </AdminLayout>
+        <Routes>
+          {/* Páginas públicas */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
+
+          {/* Panel de administración */}
+          <Route path="/" element={<AdminLayout><Dashboard /></AdminLayout>} />
+          <Route path="/sucursales" element={<AdminLayout><Sucursales /></AdminLayout>} />
+          <Route path="/sucursales/nueva" element={<AdminLayout><NuevaSucursal /></AdminLayout>} />
+          <Route path="/sucursales/:id/detalles" element={<AdminLayout><SucursalDetalles /></AdminLayout>} />
+          <Route path="/sucursales/:id/configurar" element={<AdminLayout><SucursalConfiguracion /></AdminLayout>} />
+          <Route path="/categorias" element={<AdminLayout><Categorias /></AdminLayout>} />
+          <Route path="/categorias/nueva" element={<AdminLayout><NuevaCategoria /></AdminLayout>} />
+          <Route path="/categorias/:id/detalles" element={<AdminLayout><CategoriaDetalles /></AdminLayout>} />
+          <Route path="/categorias/:id/configurar" element={<AdminLayout><CategoriaConfiguracion /></AdminLayout>} />
+          <Route path="/kioskos" element={<AdminLayout><Kioskos /></AdminLayout>} />
+          <Route path="/kioskos/registrar" element={<AdminLayout><RegistrarKiosko /></AdminLayout>} />
+          <Route path="/publicidad" element={<AdminLayout><Publicidad /></AdminLayout>} />
+          <Route path="/pantallas" element={<AdminLayout><Pantallas /></AdminLayout>} />
+          <Route path="/pantallas/nueva" element={<AdminLayout><RegistrarPantalla /></AdminLayout>} />
+          <Route path="/usuarios" element={<AdminLayout><Usuarios /></AdminLayout>} />
+          <Route path="/roles" element={<AdminLayout><Roles /></AdminLayout>} />
+          <Route path="/turnos" element={<AdminLayout><Turnos /></AdminLayout>} />
+          <Route path="/reportes" element={<AdminLayout><Reportes /></AdminLayout>} />
+          <Route path="/soporte" element={<AdminLayout><Soporte /></AdminLayout>} />
+          <Route path="/configuracion" element={<AdminLayout><Configuracion /></AdminLayout>} />
+
+          {/* Catch-all */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
